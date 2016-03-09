@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context useHttpOnly="true" useRelativeRedirects="false">
+    <!-- Disable session persistence across Tomcat restarts -->
+    <Manager pathname="" />
+ 
+    <Parameter name="repository-address" value="rmi://127.0.0.1:1099/hipporepository" override="false"/>
+    <Parameter name="repository-directory" value="${catalina.base}/../repository" override="false"/>
+    <Parameter name="start-remote-server" value="false" override="false"/>
+ 
+    <Parameter name="check-username" value="liveuser" override="false"/>
+ 
+    <Resource name="mail/Session" auth="Container"
+        type="javax.mail.Session" mail.smtp.host="localhost"/>
+ 
+    <!-- JNDI resource exposing database connection goes here -->
+	
+	<Resource
+            name="jdbc/repositoryDS" auth="Container" type="javax.sql.DataSource"
+            maxTotal="20" maxIdle="10" initialSize="2" maxWaitMillis="10000"
+            testWhileIdle="true" testOnBorrow="false" validationQuery="SELECT 1"
+            timeBetweenEvictionRunsMillis="10000"
+            minEvictableIdleTimeMillis="60000"
+            username="${DB_USER}" password="${DB_PASS}"
+            driverClassName="com.mysql.jdbc.Driver"
+            url="jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?characterEncoding=utf8"/>
+ 
+</Context>
