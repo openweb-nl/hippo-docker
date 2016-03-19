@@ -19,6 +19,8 @@ COPY conf/log4j.xml $CATALINA_HOME/conf/log4j.xml
 
 RUN chmod +x $CATALINA_HOME/bin/setenv.sh
 
-
 EXPOSE 1099
+
+VOLUME ["/usr/local/repository/", "/usr/local/tomcat/logs"]
+
 CMD ["catalina.sh", "run"]
