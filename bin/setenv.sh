@@ -5,9 +5,6 @@ JAVA_ENDORSED_DIRS=${CATALINA_HOME}/endorsed
 
 CLUSTER_ID="$(whoami)-$(hostname -f)"
 
-MAX_HEAP=512
-MIN_HEAP=256
-
 REP_OPTS="-Drepo.bootstrap=true -Drepo.config=file:${CATALINA_BASE}/conf/repository.xml"
 JVM_OPTS="-server -Xmx${MAX_HEAP}m -Xms${MIN_HEAP}m -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true"
 DMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/logs/"
