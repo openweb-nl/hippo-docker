@@ -56,8 +56,8 @@
       <param name="bufferSize" value="1000"/>
       <param name="cacheSize" value="1000"/>
       <param name="onWorkspaceInconsistency" value="log"/>
-      <param name="forceConsistencyCheck" value="false"/>
-      <param name="enableConsistencyCheck" value="false"/>
+      <param name="forceConsistencyCheck" value="true"/>
+      <param name="enableConsistencyCheck" value="true"/>
       <param name="autoRepair" value="true"/>
       <param name="analyzer" value="org.hippoecm.repository.query.lucene.StandardHippoAnalyzer"/>
       <param name="queryClass" value="org.apache.jackrabbit.core.query.QueryImpl"/>
