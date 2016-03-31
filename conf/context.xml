@@ -9,13 +9,21 @@
  
     <Parameter name="check-username" value="liveuser" override="false"/>
  
-    <Resource name="mail/Session" auth="Container"
-        type="javax.mail.Session" mail.smtp.host="localhost"/>
- 
-    <!-- JNDI resource exposing database connection goes here -->
+	<Resource name="${MAIL_SESSION_RESOURCE_NAME}" auth="Container"
+		type="javax.mail.Session"
+		username="${MAIL_USERNAME}"
+		password="${MAIL_PASSWORD}"
+		mail.smtp.host= "${MAIL_HOST}"
+		mail.debug="${MAIL_DEBUG}"
+		mail.transport.protocol="${MAIL_PROTOCOL}"
+		mail.smtp.auth= "${MAIL_AUTH}"
+		mail.smtp.port= "${MAIL_PORT}"
+		mail.smtp.starttls.enable="${MAIL_TLS_ENABLE}"
+		description="E-Mail Resource"
+	/>
 	
 	<Resource
-            name="jdbc/repositoryDS" auth="Container" type="javax.sql.DataSource"
+            name="${DB_RESOURCE_NAME}" auth="Container" type="javax.sql.DataSource"
             maxTotal="20" maxIdle="10" initialSize="2" maxWaitMillis="10000"
             testWhileIdle="true" testOnBorrow="false" validationQuery="SELECT 1"
             timeBetweenEvictionRunsMillis="10000"
