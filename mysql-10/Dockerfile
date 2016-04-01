@@ -1,5 +1,5 @@
-#docker build -f Dockerfile -t registry.open-web.nl:5043/hippo:mysql-10.0.1 .
-FROM registry.open-web.nl:5043/oracle-tomcat:8-jre8
+#docker build -f Dockerfile -t openweb/hippo:mysql-10 .
+FROM openweb/oracle-tomcat:8-jre8
 MAINTAINER Ebrahim Aharpour <ebrahim@openweb.nl>
 
 # General configuration
@@ -19,7 +19,7 @@ ENV MAIL_SESSION_RESOURCE_NAME=mail/Session
 ENV MAIL_USERNAME=
 ENV MAIL_PASSWORD=
 ENV MAIL_HOST=localhost
-ENV MAIL_DEBUG
+ENV MAIL_DEBUG=false
 ENV MAIL_PROTOCOL=smtp
 ENV MAIL_AUTH=true
 ENV MAIL_PORT=25
