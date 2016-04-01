@@ -8,8 +8,9 @@ install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
 
 before_script:
-  - docker pull openweb/oracle-tomcat:jre_7
-  - docker pull openweb/oracle-tomcat:jre_8
+  - docker pull openweb/oracle-tomcat:8-jre8
+  - docker pull openweb/oracle-tomcat:7-jre7
+  - docker pull openweb/oracle-tomcat:6-jre7
   - env | sort
   - cd "$VERSION"
   - image="openweb/hippo:$VERSION"
