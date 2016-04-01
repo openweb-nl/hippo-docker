@@ -1,4 +1,5 @@
 # Usage
+## Without Docker compose
 
     docker pull openweb/hippo:mysql-10
     
@@ -12,6 +13,58 @@
         -e DB_PASS=dbPass  \
             openweb/hippo:mysql-10.1
             
+## With Docker compose
+create a file call "docker-compose.yaml" with the follwoing content
+
+    version: '2'
+
+    services:
+      hippo:
+        image: openweb/hippo:mysql-10
+        networks:
+          - app_network
+        volumes:
+          - hippo_repository:/usr/local/repository/
+          - hippo_logs:/usr/local/tomcat/logs
+        environment:
+          DB_HOST: "database"
+          DB_PORT: "3306"
+          DB_NAME: "hippo"
+          DB_USER: "hippo"
+          DB_PASS: "hippoPassword"
+        depends_on:
+          - mysql
+        ports:
+          - "8765:8080"
+      mysql:
+        image: mysql:5.7
+        volumes:
+          - mysql_data:/var/lib/mysql
+        environment:
+          MYSQL_ROOT_PASSWORD: "rootPassword"
+          MYSQL_DATABASE: "hippo"
+          MYSQL_USER: "hippo"
+          MYSQL_PASSWORD: "hippoPassword"
+        networks:
+          app_network:
+            aliases:
+              - database 
+    volumes:
+      mysql_data:
+        driver: local
+      hippo_repository:
+        driver: local
+      hippo_logs:
+        driver: local 
+    networks:
+      app_network:
+        driver: bridge
+
+Then run the following commands
+
+    docker pull openweb/hippo:mysql-10
+    docker-compose up -d
+
 # Build
 
     docker build -f Dockerfile -t openweb/hippo:mysql-10 .
