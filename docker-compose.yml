@@ -18,6 +18,7 @@ services:
       - mysql
     ports:
       - "8765:8080"
+    restart: always
   mysql:
     image: mysql:5.7
     volumes:
@@ -30,7 +31,8 @@ services:
     networks:
       app_network:
         aliases:
-          - database 
+          - database
+    restart: always
 volumes:
   mysql_data:
     driver: local
