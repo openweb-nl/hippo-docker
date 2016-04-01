@@ -1,0 +1,26 @@
+language: bash
+services: docker
+
+env:
+  - VERSION=mysql-10
+
+install:
+  - git clone https://github.com/docker-library/official-images.git ~/official-images
+
+before_script:
+  - docker pull openweb/oracle-tomcat:jre_7
+  - docker pull openweb/oracle-tomcat:jre_8
+  - env | sort
+  - cd "$VERSION"
+  - image="openweb/hippo:$VERSION"
+
+script:
+  - docker build -t "$image" .
+  - ~/official-images/test/run.sh "$image"
+
+after_script:
+  - docker images
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push "$image"
+
+# vim:set et ts=2 sw=2:
