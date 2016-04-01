@@ -62,7 +62,7 @@ create a file call "docker-compose.yaml" with the follwoing content
 
 Then run the following commands
 
-    docker pull openweb/hippo:mysql-10
+    docker-compose pull
     docker-compose up -d
 
 # Build
