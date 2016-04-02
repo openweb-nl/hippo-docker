@@ -36,6 +36,9 @@ ENV DB_PASS=
 # JDBC configuration
 ENV MYSQL_CONNECTOR_VERSION=5.1.38
 
+# Repository configuration
+ENV CONSISTENCY_CHECK=none
+
 WORKDIR $CATALINA_HOME
 
 RUN rm -rf $CATALINA_HOME/webapps/*
