@@ -61,4 +61,4 @@ EXPOSE 1099
 
 VOLUME ["/usr/local/repository/", "/usr/local/tomcat/logs"]
 
-CMD ["catalina.sh", "run"]
+CMD ["/bin/bash", "catalina.sh", "run"]
