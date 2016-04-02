@@ -5,8 +5,20 @@ JAVA_ENDORSED_DIRS=${CATALINA_HOME}/endorsed
 
 CLUSTER_ID="$(whoami)-$(hostname -f)"
 
+if [[ "$CONSISTENCY_CHECK" == "check" ]]
+then
+        REP_FILE="repository-consistency.xml"
+else
+        if [[ "$CONSISTENCY_CHECK" == "check-force" ]]
+        then
+                REP_FILE="repository-force.xml"
+        else
+                REP_FILE="repository.xml"
+        fi
+fi
+
 JVM_OPTS="-server -Xmx${MAX_HEAP}m -Xms${MIN_HEAP}m -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true -Dfile.encoding=${ENCODING}"
-REP_OPTS="-Drepo.bootstrap=true -Drepo.config=file:${CATALINA_BASE}/conf/repository.xml"
+REP_OPTS="-Drepo.bootstrap=true -Drepo.config=file:${CATALINA_BASE}/conf/${REP_FILE}"
 DMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/logs/"
 RMI_OPTS="-Djava.rmi.server.hostname=${RMI_SERVER_HOSTNAME}"
 L4J_OPTS="-Dlog4j.configuration=file:${CATALINA_BASE}/conf/log4j.xml"
