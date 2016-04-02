@@ -47,6 +47,8 @@ RUN curl -s -o $CATALINA_HOME/endorsed/mysql-connector-java-$MYSQL_CONNECTOR_VER
 
 COPY bin/setenv.sh $CATALINA_HOME/bin/setenv.sh
 COPY conf/repository.xml $CATALINA_HOME/conf/repository.xml
+COPY conf/repository-consistency.xml $CATALINA_HOME/conf/repository-consistency.xml
+COPY conf/repository-force.xml $CATALINA_HOME/conf/repository-force.xml
 COPY conf/context.xml $CATALINA_HOME/conf/context.xml
 COPY conf/server.xml $CATALINA_HOME/conf/server.xml
 COPY conf/catalina.properties $CATALINA_HOME/conf/catalina.properties
