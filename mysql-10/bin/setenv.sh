@@ -5,11 +5,11 @@ JAVA_ENDORSED_DIRS=${CATALINA_HOME}/endorsed
 
 CLUSTER_ID="$(whoami)-$(hostname -f)"
 
-if [[ "$CONSISTENCY_CHECK" == "check" ]]
+if [[ "${CONSISTENCY_CHECK}" == "check" ]]
 then
         REP_FILE="repository-consistency.xml"
 else
-        if [[ "$CONSISTENCY_CHECK" == "check-force" ]]
+        if [[ "${CONSISTENCY_CHECK}" == "check-force" ]]
         then
                 REP_FILE="repository-force.xml"
         else
