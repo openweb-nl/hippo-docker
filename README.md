@@ -1,6 +1,6 @@
 ### About this image
 
-This docker image is not meant for direct usage. It is meant to be use as extension point. For instruction on how to make
+This docker image is not meant for direct usage. It is meant to be used as an extension point. For instruction on how to dockerify your Hippo project please the instruction below.
 
 If you are looking for a runnable docker image to test drive Hippo CMS you can use one of the following docker images
 
