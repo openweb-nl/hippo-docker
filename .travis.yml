@@ -21,7 +21,5 @@ script:
 
 after_script:
   - docker images
-  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker push "$image"
 
 # vim:set et ts=2 sw=2:
