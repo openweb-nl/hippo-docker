@@ -12,7 +12,7 @@ before_script:
   - docker pull openweb/oracle-tomcat:7-jre7
   - docker pull openweb/oracle-tomcat:6-jre7
   - env | sort
-  - cd "$VERSION"
+  - cd "image"
   - image="openweb/hippo:$VERSION"
 
 script:
