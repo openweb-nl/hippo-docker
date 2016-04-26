@@ -2,7 +2,7 @@ language: bash
 services: docker
 
 env:
-  - VERSION=mysql-10
+  - VERSION=mysql-7.9
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images

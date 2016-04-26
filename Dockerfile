@@ -1,5 +1,5 @@
-#docker build -f Dockerfile -t openweb/hippo:mysql-10 .
-FROM openweb/oracle-tomcat:8-jre8
+#docker build -f Dockerfile -t openweb/hippo:mysql-7.9 .
+FROM openweb/oracle-tomcat:7-jre7
 MAINTAINER Ebrahim Aharpour <ebrahim@openweb.nl>
 
 ENV ENCODING=UTF-8 \
