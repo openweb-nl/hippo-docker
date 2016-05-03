@@ -50,10 +50,11 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 		 <forceTags>true</forceTags>
 		 <serverId>your-docker-registry-serverId</serverId>
 		 <registryUrl>your-docker-registry-url</registryUrl>
+		 <pullOnBuild>true</pullOnBuild>
 	   </configuration>
 	   <executions>
 		 <execution>
-		   <id>ducker-build</id>
+		   <id>docker-build</id>
 		   <phase>validate</phase>
 		   <goals>
 			 <goal>build</goal>
