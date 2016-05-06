@@ -98,7 +98,7 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 		-e MYSQL_DATABASE=hippo \
 		-e MYSQL_USER=hippo \
 		-e MYSQL_PASSWORD=hippoPassword \
-		-d mysql:5.5
+		-d mysql:5.7
 
 	docker run -d -p 8585:8080 --name hippo-demo-node1 \
 		--net hippo-demo-network \
@@ -136,7 +136,7 @@ services:
       - "8585:8080"
     restart: always
   mysql:
-    image: mysql:5.5
+    image: mysql:5.7
     volumes:
       - mysql_data:/var/lib/mysql
     environment:
