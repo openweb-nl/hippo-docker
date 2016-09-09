@@ -7,7 +7,7 @@ ENV ENCODING=UTF-8 \
 \
     MAX_HEAP=512 \
     MIN_HEAP=256 \
-    EXTERA_OPTS="" \
+    EXTRA_OPTS="" \
 \
     RMI_SERVER_HOSTNAME=127.0.0.1 \
 \
