@@ -18,7 +18,7 @@ else
 fi
 
 JVM_OPTS="-server -Xmx${MAX_HEAP}m -Xms${MIN_HEAP}m -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true -Dfile.encoding=${ENCODING}"
-REP_OPTS="-Drepo.bootstrap=${REPO_BOOTSTRAP} -Drepo.config=file:${CATALINA_BASE}/conf/${REP_FILE}"
+REP_OPTS="-Drepo.bootstrap=${REPO_BOOTSTRAP} -Drepo.upgrade=${REPO_UPGRADE} -Drepo.config=file:${CATALINA_BASE}/conf/${REP_FILE}"
 DMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/logs/"
 RMI_OPTS="-Djava.rmi.server.hostname=${RMI_SERVER_HOSTNAME}"
 L4J_OPTS="-Dlog4j.configuration=file:${CATALINA_BASE}/conf/log4j.xml"
