@@ -35,28 +35,30 @@ ENV ENCODING=UTF-8 \
 
 WORKDIR $CATALINA_HOME
 
-COPY bin/setenv.sh $CATALINA_HOME/bin/setenv.sh
-COPY bin/wait-for-it.sh /bin/wait-for-it.sh
-COPY bin/entrypoint.sh /bin/entrypoint.sh
+COPY ["bin/setenv.sh", \
+        "bin/wait-for-it.sh", \
+        "bin/entrypoint.sh", \
+    "$CATALINA_HOME/bin/"]
 
-COPY conf/repository.xml $CATALINA_HOME/conf/repository.xml
-COPY conf/repository-consistency.xml $CATALINA_HOME/conf/repository-consistency.xml
-COPY conf/repository-force.xml $CATALINA_HOME/conf/repository-force.xml
-COPY conf/context.xml $CATALINA_HOME/conf/context.xml
-COPY conf/server.xml $CATALINA_HOME/conf/server.xml
-COPY conf/catalina.properties $CATALINA_HOME/conf/catalina.properties
-COPY conf/catalina.policy $CATALINA_HOME/conf/catalina.policy
-COPY conf/log4j.xml $CATALINA_HOME/conf/log4j.xml
+COPY ["conf/repository.xml", \
+        "conf/repository-consistency.xml", \
+        "conf/repository-force.xml", \
+        "conf/context.xml.template", \
+        "conf/server.xml", \
+        "conf/catalina.properties", \
+        "conf/catalina.policy", \
+        "conf/log4j.xml", \
+    "$CATALINA_HOME/conf/"]
 
 RUN rm -rf $CATALINA_HOME/webapps/* &&\
     mkdir -p $CATALINA_HOME/endorsed &&\
     curl -s -o $CATALINA_HOME/endorsed/mysql-connector-java-$MYSQL_CONNECTOR_VERSION.jar -L https://repo1.maven.org/maven2/mysql/mysql-connector-java/$MYSQL_CONNECTOR_VERSION/mysql-connector-java-$MYSQL_CONNECTOR_VERSION.jar &&\
 	chmod +x $CATALINA_HOME/bin/setenv.sh &&\
-	chmod +x /bin/wait-for-it.sh &&\
-	chmod +x /bin/entrypoint.sh
+	chmod +x bin/wait-for-it.sh &&\
+	chmod +x bin/entrypoint.sh
 
 EXPOSE 1099
 
 VOLUME ["/usr/local/repository/", "/usr/local/tomcat/logs"]
-ENTRYPOINT ["/bin/entrypoint.sh"]
+ENTRYPOINT ["bin/entrypoint.sh"]
 CMD ["/bin/bash", "catalina.sh", "run"]

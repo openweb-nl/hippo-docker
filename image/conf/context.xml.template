@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context useHttpOnly="true" useRelativeRedirects="false">
+  <!-- Disable session persistence across Tomcat restarts -->
+  <Manager pathname=""/>
+
+  <Parameter name="repository-address" value="rmi://127.0.0.1:1099/hipporepository" override="false"/>
+  <Parameter name="repository-directory" value="${catalina.base}/../repository" override="false"/>
+  <Parameter name="start-remote-server" value="false" override="false"/>
+
+  <Parameter name="check-username" value="liveuser" override="false"/>
+
+  <Resource name="${MAIL_SESSION_RESOURCE_NAME}" auth="Container"
+            type="javax.mail.Session"
+            mail.smtp.host="${MAIL_HOST}"
+            mail.debug="${MAIL_DEBUG}"
+            mail.transport.protocol="${MAIL_PROTOCOL}"
+            mail.smtp.auth="${MAIL_AUTH}"
+            mail.smtp.port="${MAIL_PORT}"
+            mail.smtp.starttls.enable="${MAIL_TLS_ENABLE}"
+            mail.smtp.user="${MAIL_USERNAME}"
+            mail.password="${MAIL_PASSWORD}"
+            username="${MAIL_USERNAME}"
+            password="${MAIL_PASSWORD}"
+            description="E-Mail Resource"
+  />
+
+  <Resource
+          name="${DB_RESOURCE_NAME}" auth="Container" type="javax.sql.DataSource"
+          maxTotal="20" maxIdle="10" initialSize="2" maxWaitMillis="10000"
+          testWhileIdle="true" testOnBorrow="false" validationQuery="SELECT 1"
+          timeBetweenEvictionRunsMillis="10000"
+          minEvictableIdleTimeMillis="60000"
+          username="${DB_USER}" password="${DB_PASS}"
+          driverClassName="com.mysql.jdbc.Driver"
+          url="jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?characterEncoding=utf8&amp;useSSL=false"/>
+</Context>
