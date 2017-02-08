@@ -19,6 +19,7 @@ ENV ENCODING=UTF-8 \
     MAIL_PROTOCOL=smtp \
     MAIL_AUTH=true \
     MAIL_PORT=25 \
+    MAIL_FROM="" \
     MAIL_TLS_ENABLE=true \
 \
     DB_RESOURCE_NAME=jdbc/repositoryDS \
