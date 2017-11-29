@@ -45,7 +45,7 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 	  </plugin>
 	</plugins>
   </build>
-  <modules></modules>
+  <modules/>
 </profile>
 ```
 
@@ -53,7 +53,7 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 
 	FROM openweb/hippo:mysql-10
 
-	ADD artifactId-*-distribution.tar.gz /usr/local/tomcat
+	ADD target/artifactId-*-distribution.tar.gz /usr/local/tomcat
 
 
 **Step 3:** Make sure that your distribution package does not contain a context.xml or repository.xml file.
