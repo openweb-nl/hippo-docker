@@ -22,9 +22,10 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 		<version>1.3.6</version>
 		<inherited>false</inherited>
 		<configuration>
-		  <repository>your-docker-registry/${project.artifactId}</repository>
+		  <repository>docker-repo.example.com:8080/${project.artifactId}</repository>
 		  <tag>${project.version}</tag>
 		  <pullNewerImage>true</pullNewerImage>
+	          <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
 		</configuration>
 		<executions>
 		  <execution>
@@ -55,7 +56,7 @@ of docker configuration.  Just add configuration similar to:
 
 ```xml
 <configuration>
-  <repository>docker-repo.example.com:8080/organization/image</repository>
+  <repository>docker-repo.example.com:8080/image</repository>
   <tag>latest</tag>
   <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
 </configuration>
