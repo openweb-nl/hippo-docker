@@ -25,7 +25,7 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 		  <repository>your-docker-registry/${project.artifactId}</repository>
 		  <tag>${project.version}</tag>
 		  <pullNewerImage>true</pullNewerImage>
-      <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+		  <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
 		</configuration>
 		<executions>
 		  <execution>
