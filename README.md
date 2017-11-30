@@ -19,7 +19,7 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 	  <plugin>
 		<groupId>com.spotify</groupId>
 		<artifactId>dockerfile-maven-plugin</artifactId>
-		<version>1.3.4</version>
+		<version>1.3.6</version>
 		<inherited>false</inherited>
 		<configuration>
 		  <repository>your-docker-registry/${project.artifactId}</repository>
@@ -47,6 +47,32 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
   </build>
   <modules/>
 </profile>
+```
+## Authenticating with maven settings.xml
+
+Since version 1.3.6, you can authenticate using your maven settings.xml instead
+of docker configuration.  Just add configuration similar to:
+
+```xml
+<configuration>
+  <repository>docker-repo.example.com:8080/organization/image</repository>
+  <tag>latest</tag>
+  <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+</configuration>
+```
+
+You can also use `-Ddockerfile.useMavenSettingsForAuth=true` on the command line.
+
+Then, in your maven settings file, add configuration for the server:
+
+```xml
+<servers>
+  <server>
+    <id>docker-repo.example.com:8080</id>
+    <username>me</username>
+    <password>mypassword</password>
+  </server>
+</servers>
 ```
 
 **Step 2:** Add a docker file called Dockerfile in the root of the project with the following content
