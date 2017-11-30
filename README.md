@@ -19,12 +19,13 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 	  <plugin>
 		<groupId>com.spotify</groupId>
 		<artifactId>dockerfile-maven-plugin</artifactId>
-		<version>1.3.4</version>
+		<version>1.3.6</version>
 		<inherited>false</inherited>
 		<configuration>
 		  <repository>your-docker-registry/${project.artifactId}</repository>
 		  <tag>${project.version}</tag>
 		  <pullNewerImage>true</pullNewerImage>
+      <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
 		</configuration>
 		<executions>
 		  <execution>
@@ -57,6 +58,20 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 
 
 **Step 3:** Make sure that your distribution package does not contain a context.xml or repository.xml file.
+
+**Step 4:** Add the following fragment to your settings.xml file
+
+```xml
+<servers>
+  ...
+  <!-- make sure server.id is exactly the same as <repository/> in the plugin configuration  -->
+  <server>
+    <id>your-docker-registry</id>
+    <username>yourname</username>
+    <password>password</password>
+  </server>
+</servers>
+```
 
 ### To Build a docker image
 
