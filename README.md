@@ -147,6 +147,7 @@ services:
       MYSQL_USER: "hippo"
       MYSQL_PASSWORD: "hippoPassword"
       TZ: "Europe/Amsterdam"
+      #command: ["--max_allowed_packet=512M", "--innodb_log_file_size=200M"]
     restart: always
   mailcatcher:
       image: tophfr/mailcatcher:latest
