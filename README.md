@@ -126,8 +126,13 @@ services:
       DB_NAME: "hippo"
       DB_USER: "hippo"
       DB_PASS: "hippoPassword"
+      MAIL_AUTH: "false"
+      MAIL_TLS_ENABLE: "false"
+      MAIL_HOST: "mailcatcher"
+      TZ: "Europe/Amsterdam"
     depends_on:
       - mysql
+      - mailcatcher
     ports:
       - "8585:8080"
     restart: always
@@ -135,12 +140,21 @@ services:
     image: mysql:5.7
     volumes:
       - mysql_data:/var/lib/mysql
+      #- ./dump:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: "rootPassword"
       MYSQL_DATABASE: "hippo"
       MYSQL_USER: "hippo"
       MYSQL_PASSWORD: "hippoPassword"
+      TZ: "Europe/Amsterdam"
     restart: always
+  mailcatcher:
+      image: tophfr/mailcatcher:latest
+      environment:
+        TZ: "Europe/Amsterdam"
+      ports:
+        - "8586:80"
+      restart: always
 volumes:
   mysql_data:
     driver: local
