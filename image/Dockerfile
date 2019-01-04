@@ -1,4 +1,4 @@
-#docker build -f Dockerfile -t openweb/hippo:mysql-11 .
+#docker build -f Dockerfile -t openweb/hippo:mysql-12 .
 FROM tomcat:9-jre8
 MAINTAINER Ebrahim Aharpour <ebrahim@openweb.nl>
 
@@ -48,7 +48,7 @@ COPY ["conf/repository.xml", \
         "conf/server.xml", \
         "conf/catalina.properties", \
         "conf/catalina.policy", \
-        "conf/log4j.xml", \
+        "conf/log4j2.xml", \
     "$CATALINA_HOME/conf/"]
 
 RUN rm -rf $CATALINA_HOME/webapps/* &&\
