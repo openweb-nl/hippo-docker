@@ -96,17 +96,17 @@
       <param name="databaseType" value="mysql"/>
       <param name="schemaObjectPrefix" value="repository_"/>
       <param name="revision" value="${rep.home}/revision.log"/>
+      <param name="janitorEnabled" value="true"/>
+      <param name="janitorFirstRunHourOfDay" value="4"/>
+      <param name="janitorSleep" value="86400"/>
     </Journal>
   </Cluster>
- 
+
   <DataStore class="org.apache.jackrabbit.core.data.db.DbDataStore">
     <param name="dataSourceName" value="repositoryDS"/>
     <param name="minRecordLength" value="1024"/>
     <param name="maxConnections" value="5"/>
     <param name="copyWhenReading" value="true"/>
-	<param name="janitorEnabled" value="true"/>
-	<param name="janitorFirstRunHourOfDay" value="4"/>
-	<param name="janitorSleep" value="86400"/>
   </DataStore>
  
 </Repository>
