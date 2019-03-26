@@ -53,7 +53,7 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 **Step 2:** Add a docker file called Dockerfile in the root of the project with the following content
 
 ```dockerfile
-FROM openweb/hippo:mysql-10
+FROM openweb/hippo:mysql-13
 
 ADD target/artifactId-*-distribution.tar.gz /usr/local/tomcat
 ```

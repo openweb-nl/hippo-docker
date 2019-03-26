@@ -2,7 +2,7 @@ version: '2'
 
 services:
   hippo:
-    image: openweb/hippo:mysql-10
+    image: openweb/hippo:mysql-13
     networks:
       - app_network
     volumes:
@@ -20,7 +20,7 @@ services:
       - "8765:8080"
     restart: always
   mysql:
-    image: mysql:5.5
+    image: mysql:5.7
     volumes:
       - mysql_data:/var/lib/mysql
     environment:
