@@ -3,7 +3,7 @@ CATALINA_BASE="/usr/local/tomcat"
 CATALINA_PID="${CATALINA_BASE}/work/catalina.pid"
 JAVA_ENDORSED_DIRS=${CATALINA_HOME}/endorsed
 
-CLUSTER_ID="$(whoami)-$(hostname -f)"
+
 
 if [[ "${CONSISTENCY_CHECK}" == "check" ]]
 then
@@ -17,11 +17,19 @@ else
         fi
 fi
 
+
+if [[ "${SET_NODE_ID}" == "true" ]]
+then
+    NODE_ID="$(whoami)-$(hostname -f)"
+    JRC_OPTS="-Dorg.apache.jackrabbit.core.cluster.node_id=${NODE_ID}"
+else
+    JRC_OPTS=""
+fi
+
 JVM_OPTS="-server -Xmx${MAX_HEAP}m -Xms${MIN_HEAP}m -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true -Dfile.encoding=${ENCODING}"
 REP_OPTS="-Drepo.bootstrap=${REPO_BOOTSTRAP} -Drepo.config=file:${CATALINA_BASE}/conf/${REP_FILE}"
 DMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/logs/"
 RMI_OPTS="-Djava.rmi.server.hostname=${RMI_SERVER_HOSTNAME}"
-JRC_OPTS="-Dorg.apache.jackrabbit.core.cluster.node_id=${CLUSTER_ID}"
 L4J_OPTS="-Dlog4j.configurationFile=file://${CATALINA_BASE}/conf/log4j2.xml -DLog4jContextSelector=org.apache.logging.log4j.core.selector.BasicContextSelector"
 VGC_OPTS="-verbosegc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:${CATALINA_BASE}/logs/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2048k"
 GEN_OPTS="-DENCODING=${ENCODING}"
