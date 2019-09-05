@@ -19,6 +19,7 @@
             mail.smtp.starttls.enable="${MAIL_TLS_ENABLE}"
             mail.smtp.user="${MAIL_USERNAME}"
             mail.password="${MAIL_PASSWORD}"
+            mail.smtp.localhost="${MAIL_LOCAL_HOST}"
             username="${MAIL_USERNAME}"
             password="${MAIL_PASSWORD}"
             description="E-Mail Resource"

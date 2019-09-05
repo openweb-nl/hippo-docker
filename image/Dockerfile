@@ -15,6 +15,7 @@ ENV ENCODING=UTF-8 \
     MAIL_USERNAME="" \
     MAIL_PASSWORD="" \
     MAIL_HOST=localhost \
+    MAIL_LOCAL_HOST=localhost \
     MAIL_DEBUG=false \
     MAIL_PROTOCOL=smtp \
     MAIL_AUTH=true \
