@@ -1,5 +1,5 @@
-#docker build -f Dockerfile -t openweb/hippo:mysql-12 .
-FROM tomcat:9-jre8
+#docker build -f Dockerfile -t openweb/hippo:mysql-13 .
+FROM tomcat:9-jdk8-adoptopenjdk-hotspot
 MAINTAINER Ebrahim Aharpour <ebrahim@openweb.nl>
 
 ENV ENCODING=UTF-8 \
@@ -8,6 +8,9 @@ ENV ENCODING=UTF-8 \
     MAX_HEAP=512 \
     MIN_HEAP=256 \
     EXTRA_OPTS="" \
+\
+    MAX_THREADS=20 \
+    ACCEPT_COUNT=250 \
 \
     RMI_SERVER_HOSTNAME=127.0.0.1 \
 \
