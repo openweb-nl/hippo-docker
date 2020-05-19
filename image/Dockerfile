@@ -1,4 +1,4 @@
-#docker build -f Dockerfile -t openweb/hippo:mysql-13 .
+#docker build -f Dockerfile -t openweb/hippo:mysql-12 .
 FROM tomcat:9-jdk8-adoptopenjdk-hotspot
 MAINTAINER Ebrahim Aharpour <ebrahim@openweb.nl>
 
