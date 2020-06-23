@@ -135,7 +135,7 @@ pom.xml
 
 Create a file called docker-compose.yml with the following content
 
-```yml
+```yaml
 version: '2'
 
 services:
