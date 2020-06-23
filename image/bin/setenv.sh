@@ -28,7 +28,20 @@ else
     JRC_OPTS=""
 fi
 
-JVM_OPTS="-server -Xmx${MAX_HEAP}m -Xms${MIN_HEAP}m -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true -Dfile.encoding=${ENCODING}"
+if [[ ! -z ${MAX_HEAP} ]]
+then
+    if [[ ! -z ${MIN_HEAP} ]]
+    then
+        MEM_OPTS="-Xmx${MAX_HEAP}m -Xms${MIN_HEAP}m"
+    else
+        MEM_OPTS="-Xmx${MAX_HEAP}m"
+    fi
+else
+   MEM_OPTS="-XX:MaxRAMPercentage=${MAX_RAM_PERCENTAGE}.0"
+fi
+
+
+JVM_OPTS="-server -XshowSettings:vm -XX:-UseContainerSupport -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap ${MEM_OPTS} -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true -Dfile.encoding=${ENCODING}"
 REP_OPTS="-Drepo.bootstrap=${REPO_BOOTSTRAP} -Drepo.config=file:${CATALINA_BASE}/conf/${REP_FILE}"
 DMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/logs/"
 RMI_OPTS="-Djava.rmi.server.hostname=${RMI_SERVER_HOSTNAME}"

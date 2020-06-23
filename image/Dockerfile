@@ -5,8 +5,9 @@ MAINTAINER Ebrahim Aharpour <ebrahim@openweb.nl>
 ENV ENCODING=UTF-8 \
     CATALINA_HOME=/usr/local/tomcat \
 \
-    MAX_HEAP=512 \
-    MIN_HEAP=256 \
+    MAX_HEAP="" \
+    MIN_HEAP="" \
+    MAX_RAM_PERCENTAGE=25 \
     EXTRA_OPTS="" \
 \
     MAX_THREADS=16 \

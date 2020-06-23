@@ -7,6 +7,13 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 * [Hippo out of the box docker image] - Hippo Community edition as it comes out of the box.
 * [Gogreen docker image] - Community edition of Hippo gogreen demo website.
 
+## Important notice:
+The latest version of this image is no longer sets "-Xmx" JVM arguments by default. Instead, it supports "-XX:MaxRAMPercentage".
+
+To still set "-Xmx" and "-Xms" you need to set environmental variables MAX_HEAP and MIN_HEAP explicitly on the container.
+
+To change the value of -XX:MaxRAMPercentage you can use environmental variable MAX_RAM_PERCENTAGE. The value of this
+variable is expected to be an **Integer** like 50 (Not 50.0)
 
 ### How to dockerify a Hippo project
 
@@ -147,6 +154,8 @@ services:
       MAIL_TLS_ENABLE: "false"
       MAIL_HOST: "mailcatcher"
       TZ: "Europe/Amsterdam"
+      MAX_HEAP: "512"
+      MIN_HEAP: "256"
     depends_on:
       - mysql
       - mailcatcher
