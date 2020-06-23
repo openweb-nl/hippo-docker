@@ -55,15 +55,32 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 ```dockerfile
 FROM openweb/hippo:mysql-13
 
-ADD target/artifactId-*-distribution.tar.gz /usr/local/tomcat
+ADD target/<artifactId>-*-distribution.tar.gz /usr/local/tomcat
 ```
 
+**Step 3:** Add a docker ignore file called ".dockerignore" to the root of the project with the following content
+```ignore
+.idea
+cms
+cms-dependencies
+conf
+db-bootstrap
+essentials
+repository-data
+site
+src
+target
+.gitignore
+.dockerignore
+*.iml
+pom.xml
+!target/<artifactId>-*-distribution.tar.gz
+```
+
+**Step 4:** Make sure that your distribution package does not contain a context.xml or repository.xml file.
 
 
-**Step 3:** Make sure that your distribution package does not contain a context.xml or repository.xml file.
-
-
-**Step 4:** Add the following fragment to your settings.xml file
+**Step 5:** Add the following fragment to your settings.xml file
 
 ```xml
 <servers>
