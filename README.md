@@ -15,6 +15,9 @@ To still set "-Xmx" and "-Xms" you need to set environmental variables MAX_HEAP 
 To change the value of -XX:MaxRAMPercentage you can use environmental variable MAX_RAM_PERCENTAGE. The value of this
 variable is expected to be an **Integer** like 50 (Not 50.0)
 
+If you are using MaxRAMPercentage make sure that you leave at least 512Mb for the native memory, 
+e.g. if you set a maximum memory limit of 1024Mb then set MAX_RAM_PERCENTAGE to 50 percent or less.
+
 ### How to dockerify a Hippo project
 
 **Step 1:** Add the following profile to your root pom.xml file.

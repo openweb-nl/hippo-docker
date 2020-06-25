@@ -37,7 +37,7 @@ then
         MEM_OPTS="-Xmx${MAX_HEAP}m"
     fi
 else
-   MEM_OPTS="-XX:MaxRAMPercentage=${MAX_RAM_PERCENTAGE}.0"
+   MEM_OPTS="-XX:MaxRAMPercentage=${MAX_RAM_PERCENTAGE}.0 -XX:MaxMetaspaceSize=${MAX_METASPACE_SIZE}m -XX:MaxDirectMemorySize=${MAX_DIRECT_MEMORY_SIZE}m"
 fi
 
 
