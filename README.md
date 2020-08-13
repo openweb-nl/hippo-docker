@@ -25,36 +25,49 @@ e.g. if you set a maximum memory limit of 1024Mb then set MAX_RAM_PERCENTAGE to 
 <profile>
   <id>docker</id>
   <build>
-	<plugins>
-	  <plugin>
-		<groupId>com.spotify</groupId>
-		<artifactId>dockerfile-maven-plugin</artifactId>
-		<version>1.3.6</version>
-		<inherited>false</inherited>
-		<configuration>
-		  <repository>your-docker-registry/${project.artifactId}</repository>
-		  <tag>${project.version}</tag>
-		  <pullNewerImage>true</pullNewerImage>
-		  <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
-		</configuration>
-		<executions>
-		  <execution>
-			<id>docker-build</id>
-			<phase>compile</phase>
-			<goals>
-			  <goal>build</goal>
-			</goals>
-		  </execution>
-		  <execution>
-			<id>docker-push</id>
-			<phase>package</phase>
-			<goals>
-			  <goal>push</goal>
-			</goals>
-		  </execution>
-		</executions>
-	  </plugin>
-	</plugins>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>docker-build</id>
+            <phase>package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>docker</executable>
+              <workingDirectory>${project.basedir}</workingDirectory>
+              <arguments>
+                <argument>build</argument>
+                <argument>--pull</argument>
+                <argument>-t</argument>
+                <argument>your-docker-registry/${project.artifactId}:${project.version}</argument>
+                <argument>.</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <!-- Push the image to a docker repo. -->
+          <execution>
+            <id>docker-push</id>
+            <phase>install</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>docker</executable>
+              <workingDirectory>${project.basedir}</workingDirectory>
+              <arguments>
+                <argument>push</argument>
+                <argument>your-docker-registry/${project.artifactId}:${project.version}</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
   <modules/>
 </profile>
@@ -90,26 +103,22 @@ pom.xml
 **Step 4:** Make sure that your distribution package does not contain a context.xml or repository.xml file.
 
 
-**Step 5:** Add the following fragment to your settings.xml file
+**Step 5:** If you want to push the image to a docker registry make sure that you are already logged into that registry 
 
-```xml
-<servers>
-  ...
-  <!-- make sure server.id is exactly the same as <repository/> in the plugin configuration  -->
-  <server>
-    <id>your-docker-registry</id>
-    <username>yourname</username>
-    <password>password</password>
-  </server>
-</servers>
+### To build a docker and push it to your registry
+
+```bash
+mvn clean install
+mvn -P dist
+mvn -P docker install
 ```
+### To build a docker (without pushing it for a registry)
 
-### To Build a docker image
-
-	mvn clean install
-	mvn -P dist
-	mvn -P docker
-
+```bash
+mvn clean install
+mvn -P dist
+mvn -P docker package
+```
 
 ### Run your docker image
 
