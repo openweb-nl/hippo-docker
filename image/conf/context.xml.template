@@ -5,7 +5,7 @@
 
   <Parameter name="repository-address" value="rmi://127.0.0.1:1099/hipporepository" override="false"/>
   <Parameter name="repository-directory" value="${catalina.base}/../repository" override="false"/>
-  <Parameter name="start-remote-server" value="false" override="false"/>
+  <Parameter name="start-remote-server" value="${ENABLE_RMI}" override="false"/>
 
   <Parameter name="check-username" value="liveuser" override="false"/>
 
