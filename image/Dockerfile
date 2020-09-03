@@ -10,6 +10,7 @@ ENV ENCODING=UTF-8 \
     MAX_RAM_PERCENTAGE=25 \
     MAX_METASPACE_SIZE=200 \
     MAX_DIRECT_MEMORY_SIZE=100 \
+    USE_URANDOM=false \
     EXTRA_OPTS="" \
 \
     MAX_THREADS=16 \
@@ -69,6 +70,7 @@ RUN rm -rf $CATALINA_HOME/webapps/* &&\
 	chmod +x bin/wait-for-it.sh &&\
 	chmod +x bin/entrypoint.sh
 
+EXPOSE 8080
 EXPOSE 1099
 
 VOLUME ["/usr/local/repository/", "/usr/local/tomcat/logs"]

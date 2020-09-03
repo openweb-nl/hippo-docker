@@ -20,6 +20,13 @@ else
 fi
 
 
+if [[ "${USE_URANDOM}" == "true" ]]
+then
+  RANDOM_OPTS="-Djava.security.egd=file:/dev/./urandom"
+  else
+  RANDOM_OPTS=""
+fi
+
 if [[ "${SET_NODE_ID}" == "true" ]]
 then
     NODE_ID="$(whoami)-$(hostname -f)"
@@ -41,7 +48,7 @@ else
 fi
 
 
-JVM_OPTS="-server -XshowSettings:vm -XX:-UseContainerSupport -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap ${MEM_OPTS} -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true -Dfile.encoding=${ENCODING}"
+JVM_OPTS="-server -XshowSettings:vm -XX:-UseContainerSupport -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap ${MEM_OPTS} -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true -Dfile.encoding=${ENCODING} ${RANDOM_OPTS}"
 REP_OPTS="-Drepo.bootstrap=${REPO_BOOTSTRAP} -Drepo.config=file:${CATALINA_BASE}/conf/${REP_FILE}"
 DMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/logs/"
 RMI_OPTS="-Djava.rmi.server.hostname=${RMI_SERVER_HOSTNAME}"
