@@ -1,5 +1,5 @@
-#docker build -f Dockerfile -t openweb/hippo:mysql-13 .
-FROM tomcat:9-jdk8-adoptopenjdk-hotspot
+#docker build -f Dockerfile -t openweb/hippo:mysql-10 .
+FROM tomcat:8-jdk8-adoptopenjdk-hotspot
 MAINTAINER Ebrahim Aharpour <ebrahim@openweb.nl>
 
 ENV ENCODING=UTF-8 \
@@ -62,7 +62,7 @@ COPY ["conf/repository.xml", \
         "conf/server.xml", \
         "conf/catalina.properties", \
         "conf/catalina.policy", \
-        "conf/log4j2.xml", \
+        "conf/log4j.xml", \
     "$CATALINA_HOME/conf/"]
 
 RUN rm -rf $CATALINA_HOME/webapps/* &&\

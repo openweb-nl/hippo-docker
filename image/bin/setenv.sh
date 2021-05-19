@@ -52,7 +52,7 @@ JVM_OPTS="-server -XshowSettings:vm -XX:-UseContainerSupport -XX:+UnlockExperime
 REP_OPTS="-Drepo.bootstrap=${REPO_BOOTSTRAP} -Drepo.config=file:${CATALINA_BASE}/conf/${REP_FILE}"
 DMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/logs/"
 RMI_OPTS="-Djava.rmi.server.hostname=${RMI_SERVER_HOSTNAME}"
-L4J_OPTS="-Dlog4j.configurationFile=file://${CATALINA_BASE}/conf/log4j2.xml -DLog4jContextSelector=org.apache.logging.log4j.core.selector.BasicContextSelector"
+L4J_OPTS="-Dlog4j.configuration=file:${CATALINA_BASE}/conf/log4j.xml"
 VGC_OPTS="-verbosegc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:${CATALINA_BASE}/logs/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2048k"
 GEN_OPTS="-DENCODING=${ENCODING} -DMAX_THREADS=${MAX_THREADS} -DACCEPT_COUNT=${ACCEPT_COUNT} -DMAX_CONNECTIONS=${MAX_CONNECTIONS} -DCONNECTION_TIMEOUT=${CONNECTION_TIMEOUT}"
 
