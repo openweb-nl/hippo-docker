@@ -40,7 +40,7 @@ ENV ENCODING=UTF-8 \
     DB_USER=hippo \
     DB_PASS="" \
 \
-    MYSQL_CONNECTOR_VERSION=8.0.15 \
+    MYSQL_CONNECTOR_VERSION=8.0.25 \
 \
     REPO_BOOTSTRAP=true \
     SET_NODE_ID=true \
