@@ -10,7 +10,7 @@
     <DataSource name="repositoryDS">
       <param name="driver" value="javax.naming.InitialContext"/>
       <param name="url" value="java:comp/env/jdbc/repositoryDS"/>
-      <param name="databaseType" value="mysql"/>
+      <param name="databaseType" value="postgresql"/>
     </DataSource>
   </DataSources>
 
@@ -33,12 +33,12 @@
       <param name="schemaObjectPrefix" value="${wsp.name}_"/>
     </FileSystem>
 
-    <PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.MySqlPersistenceManager">
+    <PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.PostgreSQLPersistenceManager">
       <param name="dataSourceName" value="repositoryDS"/>
       <param name="schemaObjectPrefix" value="${wsp.name}_"/>
       <param name="externalBLOBs" value="true"/>
-      <param name="consistencyCheck" value="false"/>
-      <param name="consistencyFix" value="false"/>
+      <param name="consistencyCheck" value="true"/>
+      <param name="consistencyFix" value="true"/>
       <param name="bundleCacheSize" value="256"/>
     </PersistenceManager>
 
@@ -56,8 +56,8 @@
       <param name="bufferSize" value="1000"/>
       <param name="cacheSize" value="1000"/>
       <param name="onWorkspaceInconsistency" value="log"/>
-      <param name="forceConsistencyCheck" value="true"/>
-      <param name="enableConsistencyCheck" value="true"/>
+      <param name="forceConsistencyCheck" value="false"/>
+      <param name="enableConsistencyCheck" value="false"/>
       <param name="autoRepair" value="true"/>
       <param name="analyzer" value="org.hippoecm.repository.query.lucene.StandardHippoAnalyzer"/>
       <param name="queryClass" value="org.apache.jackrabbit.core.query.QueryImpl"/>
@@ -79,7 +79,7 @@
       <param name="schemaObjectPrefix" value="version_"/>
     </FileSystem>
 
-    <PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.MySqlPersistenceManager">
+    <PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.PostgreSQLPersistenceManager">
       <param name="dataSourceName" value="repositoryDS"/>
       <param name="schemaObjectPrefix" value="version_"/>
       <param name="externalBLOBs" value="true"/>
@@ -94,7 +94,7 @@
   <Cluster>
     <Journal class="org.apache.jackrabbit.core.journal.DatabaseJournal">
       <param name="dataSourceName" value="repositoryDS"/>
-      <param name="databaseType" value="mysql"/>
+      <param name="databaseType" value="postgresql"/>
       <param name="schemaObjectPrefix" value="repository_"/>
       <param name="revision" value="${rep.home}/revision.log"/>
       <param name="janitorEnabled" value="true"/>

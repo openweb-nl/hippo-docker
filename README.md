@@ -76,7 +76,7 @@ e.g. if you set a maximum memory limit of 1024Mb then set MAX_RAM_PERCENTAGE to 
 **Step 2:** Add a docker file called Dockerfile in the root of the project with the following content
 
 ```dockerfile
-FROM openweb/hippo:mysql-13
+FROM openweb/hippo:postgresql-13
 
 ADD target/<artifactId>-*-distribution.tar.gz /usr/local/tomcat
 ```
@@ -122,29 +122,6 @@ mvn -P docker package
 
 ### Run your docker image
 
-#### Without docker-compose
-
-	docker network create --driver bridge hippo-demo-network
-
-	docker run --name hippo-demo-mysql \
-		--net hippo-demo-network \
-		-e MYSQL_ROOT_PASSWORD=rootPassword \
-		-e MYSQL_DATABASE=hippo \
-		-e MYSQL_USER=hippo \
-		-e MYSQL_PASSWORD=hippoPassword \
-		-d mysql:5.7
-
-	docker run -d -p 8585:8080 --name hippo-demo-node1 \
-		--net hippo-demo-network \
-		-e DB_HOST=hippo-demo-mysql \
-		-e DB_PORT=3306 -e DB_NAME=hippo \
-		-e DB_USER=hippo \
-		-e DB_PASS=hippoPassword \
-		*your-docker-registry/your-artifact-id:your-project-version*
-
-
-#### With docker-compose
-
 Create a file called docker-compose.yml with the following content
 
 ```yaml
@@ -157,8 +134,8 @@ services:
       - hippo_repository:/usr/local/repository/
       - hippo_logs:/usr/local/tomcat/logs
     environment:
-      DB_HOST: "mysql"
-      DB_PORT: "3306"
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
       DB_NAME: "hippo"
       DB_USER: "hippo"
       DB_PASS: "hippoPassword"
@@ -169,23 +146,19 @@ services:
       MAX_HEAP: "512"
       MIN_HEAP: "256"
     depends_on:
-      - mysql
+      - postgres
       - mailcatcher
     ports:
-      - "8585:8080"
+      - "8765:8080"
     restart: always
-  mysql:
-    image: mysql:5.7
-    volumes:
-      - mysql_data:/var/lib/mysql
-      #- ./dump:/docker-entrypoint-initdb.d
+  postgres:
+    image: postgres:12
     environment:
-      MYSQL_ROOT_PASSWORD: "rootPassword"
-      MYSQL_DATABASE: "hippo"
-      MYSQL_USER: "hippo"
-      MYSQL_PASSWORD: "hippoPassword"
-      TZ: "Europe/Amsterdam"
-      #command: ["--max_allowed_packet=512M", "--innodb_log_file_size=200M"]
+      POSTGRES_USER: "hippo"
+      POSTGRES_DB: "hippo"
+      POSTGRES_PASSWORD: "hippoPassword"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     restart: always
   mailcatcher:
       image: tophfr/mailcatcher:latest
@@ -195,7 +168,7 @@ services:
         - "8586:80"
       restart: always
 volumes:
-  mysql_data:
+  postgres_data:
     driver: local
   hippo_repository:
     driver: local
@@ -208,6 +181,3 @@ Then start the containers with running the following command in the folder that 
 ```bash
 docker-compose up -d
 ```
-
-[Hippo out of the box docker image]: <https://hub.docker.com/r/openweb/hippo-cms-ootb/>
-[Gogreen docker image]: <https://hub.docker.com/r/openweb/gogreen/>

@@ -1,4 +1,4 @@
-#docker build -f Dockerfile -t openweb/hippo:mysql-13 .
+#docker build -f Dockerfile -t openweb/hippo:postgresql-13 .
 FROM tomcat:9-jdk8-adoptopenjdk-hotspot
 MAINTAINER Ebrahim Aharpour <ebrahim@openweb.nl>
 
@@ -39,10 +39,8 @@ ENV ENCODING=UTF-8 \
     DB_NAME=hippo \
     DB_USER=hippo \
     DB_PASS="" \
-    DB_USE_SSL="false" \
-    DB_ALLOW_PUBLIC_KEY_RETRIEVAL="true" \
 \
-    MYSQL_CONNECTOR_VERSION=8.0.25 \
+    POSTGRESQL_CONNECTOR_VERSION=42.2.6 \
 \
     REPO_BOOTSTRAP=true \
     SET_NODE_ID=true \
@@ -67,7 +65,7 @@ COPY ["conf/repository.xml", \
 
 RUN rm -rf $CATALINA_HOME/webapps/* &&\
     mkdir -p $CATALINA_HOME/endorsed &&\
-    curl -s -o $CATALINA_HOME/endorsed/mysql-connector-java-$MYSQL_CONNECTOR_VERSION.jar -L https://repo1.maven.org/maven2/mysql/mysql-connector-java/$MYSQL_CONNECTOR_VERSION/mysql-connector-java-$MYSQL_CONNECTOR_VERSION.jar &&\
+    curl -s -o $CATALINA_HOME/endorsed/postgresql-$POSTGRESQL_CONNECTOR_VERSION.jar -L http://repo1.maven.org/maven2/org/postgresql/postgresql/$POSTGRESQL_CONNECTOR_VERSION/postgresql-$POSTGRESQL_CONNECTOR_VERSION.jar &&\
 	chmod +x $CATALINA_HOME/bin/setenv.sh &&\
 	chmod +x bin/wait-for-it.sh &&\
 	chmod +x bin/entrypoint.sh

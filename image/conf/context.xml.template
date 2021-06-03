@@ -26,12 +26,12 @@
   />
 
   <Resource
-          name="${DB_RESOURCE_NAME}" auth="Container" type="javax.sql.DataSource"
-          maxTotal="20" maxIdle="10" initialSize="2" maxWaitMillis="10000"
-          testWhileIdle="true" testOnBorrow="false" validationQuery="SELECT 1"
-          timeBetweenEvictionRunsMillis="10000"
-          minEvictableIdleTimeMillis="60000"
-          username="${DB_USER}" password="${DB_PASS}"
-          driverClassName="com.mysql.cj.jdbc.Driver"
-          url="jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?characterEncoding=utf8&amp;allowPublicKeyRetrieval=${DB_ALLOW_PUBLIC_KEY_RETRIEVAL}&amp;useSSL=${DB_USE_SSL}"/>
+      name="${DB_RESOURCE_NAME}" auth="Container" type="javax.sql.DataSource"
+      maxTotal="20" maxIdle="10" initialSize="2" maxWaitMillis="10000"
+      testWhileIdle="true" testOnBorrow="false" validationQuery="SELECT 1"
+      timeBetweenEvictionRunsMillis="10000"
+      minEvictableIdleTimeMillis="60000"
+      username="${DB_USER}" password="${DB_PASS}"
+      driverClassName="org.postgresql.Driver"
+      url="jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}" />
 </Context>
