@@ -39,6 +39,8 @@ ENV ENCODING=UTF-8 \
     DB_NAME=hippo \
     DB_USER=hippo \
     DB_PASS="" \
+    DB_USE_SSL="false" \
+    DB_ALLOW_PUBLIC_KEY_RETRIEVAL="true" \
 \
     MYSQL_CONNECTOR_VERSION=8.0.25 \
 \

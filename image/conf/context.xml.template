@@ -33,5 +33,5 @@
           minEvictableIdleTimeMillis="60000"
           username="${DB_USER}" password="${DB_PASS}"
           driverClassName="com.mysql.cj.jdbc.Driver"
-          url="jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?characterEncoding=utf8&amp;allowPublicKeyRetrieval=true&amp;useSSL=false"/>
+          url="jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?characterEncoding=utf8&amp;allowPublicKeyRetrieval=${DB_ALLOW_PUBLIC_KEY_RETRIEVAL}&amp;useSSL=${DB_USE_SSL}"/>
 </Context>
