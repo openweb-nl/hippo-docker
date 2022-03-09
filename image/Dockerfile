@@ -1,5 +1,5 @@
 #docker build --no-cache -f Dockerfile -t openweb/hippo:mysql-13 .
-FROM tomcat:9-jdk8-adoptopenjdk-hotspot
+FROM tomcat:9-jdk8-openjdk
 MAINTAINER Ebrahim Aharpour <ebrahim@openweb.nl>
 
 ENV ENCODING=UTF-8 \
