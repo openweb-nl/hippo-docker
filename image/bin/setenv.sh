@@ -1,11 +1,8 @@
-#!/usr/bin/env bash
-
+#!/bin/bash
 CATALINA_HOME="/usr/local/tomcat"
 CATALINA_BASE="/usr/local/tomcat"
 CATALINA_PID="${CATALINA_BASE}/work/catalina.pid"
 JAVA_ENDORSED_DIRS=${CATALINA_HOME}/endorsed
-
-
 
 if [[ "${CONSISTENCY_CHECK}" == "check" ]]
 then
@@ -18,7 +15,6 @@ else
                 REP_FILE="repository.xml"
         fi
 fi
-
 
 if [[ "${USE_URANDOM}" == "true" ]]
 then
@@ -46,7 +42,6 @@ then
 else
    MEM_OPTS="-XX:MaxRAMPercentage=${MAX_RAM_PERCENTAGE}.0 -XX:MaxMetaspaceSize=${MAX_METASPACE_SIZE}m -XX:MaxDirectMemorySize=${MAX_DIRECT_MEMORY_SIZE}m"
 fi
-
 
 JVM_OPTS="-server -XshowSettings:vm -XX:-UseContainerSupport -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap ${MEM_OPTS} -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true -Dfile.encoding=${ENCODING} ${RANDOM_OPTS}"
 REP_OPTS="-Drepo.bootstrap=${REPO_BOOTSTRAP} -Drepo.config=file:${CATALINA_BASE}/conf/${REP_FILE}"
