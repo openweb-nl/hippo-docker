@@ -1,4 +1,4 @@
-#docker build -f Dockerfile -t openweb/hippo:mysql-13 .
+#docker build --no-cache -f Dockerfile -t openweb/hippo:mysql-13 .
 FROM tomcat:9-jdk8-adoptopenjdk-hotspot
 MAINTAINER Ebrahim Aharpour <ebrahim@openweb.nl>
 
@@ -42,7 +42,7 @@ ENV ENCODING=UTF-8 \
     DB_USE_SSL="false" \
     DB_ALLOW_PUBLIC_KEY_RETRIEVAL="true" \
 \
-    MYSQL_CONNECTOR_VERSION=8.0.25 \
+    MYSQL_CONNECTOR_VERSION=8.0.28 \
 \
     REPO_BOOTSTRAP=true \
     SET_NODE_ID=true \
