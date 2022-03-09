@@ -40,7 +40,7 @@ ENV ENCODING=UTF-8 \
     DB_USER=hippo \
     DB_PASS="" \
 \
-    POSTGRESQL_CONNECTOR_VERSION=42.2.6 \
+    POSTGRESQL_CONNECTOR_VERSION=42.3.3 \
 \
     REPO_BOOTSTRAP=true \
     SET_NODE_ID=true \
@@ -65,7 +65,7 @@ COPY ["conf/repository.xml", \
 
 RUN rm -rf $CATALINA_HOME/webapps/* &&\
     mkdir -p $CATALINA_HOME/endorsed &&\
-    curl -s -o $CATALINA_HOME/endorsed/postgresql-$POSTGRESQL_CONNECTOR_VERSION.jar -L http://repo1.maven.org/maven2/org/postgresql/postgresql/$POSTGRESQL_CONNECTOR_VERSION/postgresql-$POSTGRESQL_CONNECTOR_VERSION.jar &&\
+    curl -s -o $CATALINA_HOME/endorsed/postgresql-$POSTGRESQL_CONNECTOR_VERSION.jar -L https://repo1.maven.org/maven2/org/postgresql/postgresql/$POSTGRESQL_CONNECTOR_VERSION/postgresql-$POSTGRESQL_CONNECTOR_VERSION.jar &&\
 	chmod +x $CATALINA_HOME/bin/setenv.sh &&\
 	chmod +x bin/wait-for-it.sh &&\
 	chmod +x bin/entrypoint.sh
