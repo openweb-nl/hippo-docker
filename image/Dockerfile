@@ -1,6 +1,6 @@
-#docker build --no-cache -f Dockerfile -t openweb/hippo:mysql-13 .
-FROM tomcat:9-jdk8-openjdk
-MAINTAINER Ebrahim Aharpour <ebrahim@openweb.nl>
+#docker build --no-cache -f Dockerfile -t openweb/hippo:mysql-15 .
+FROM tomcat:9-jdk11-temurin
+MAINTAINER Open Web IT B.V. <info@openweb.nl>
 
 ENV ENCODING=UTF-8 \
     CATALINA_HOME=/usr/local/tomcat \

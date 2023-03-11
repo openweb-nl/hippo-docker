@@ -2,7 +2,7 @@ version: '2'
 
 services:
   hippo:
-    image: openweb/hippo:mysql-10
+    image: openweb/hippo:mysql-15
     networks:
       - app_network
     environment:
@@ -16,7 +16,7 @@ services:
     ports:
       - "8765:8080"
   mysql:
-    image: mysql:5.5
+    image: mysql:5.7-debian
     environment:
       MYSQL_ROOT_PASSWORD: "rootPassword"
       MYSQL_DATABASE: "hippo"

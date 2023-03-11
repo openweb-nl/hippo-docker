@@ -8,6 +8,8 @@ If you are looking for a runnable docker image to test drive Hippo CMS you can u
 * [Gogreen docker image] - Community edition of Hippo gogreen demo website.
 
 ## Important notice:
+From Bloomreach Experience Manager 15, Java 8 isn't supported. Tagged version are in sync with Bloomreach versions
+
 The latest version of this image is no longer sets "-Xmx" JVM arguments by default. Instead, it supports "-XX:MaxRAMPercentage".
 
 To still set "-Xmx" and "-Xms" you need to set environmental variables MAX_HEAP and MIN_HEAP explicitly on the container.
@@ -76,9 +78,9 @@ e.g. if you set a maximum memory limit of 1024Mb then set MAX_RAM_PERCENTAGE to 
 **Step 2:** Add a docker file called Dockerfile in the root of the project with the following content
 
 ```dockerfile
-FROM openweb/hippo:mysql-13
+FROM openweb/hippo:mysql-15
 
-ADD target/<artifactId>-*-distribution.tar.gz /usr/local/tomcat
+ADD target/-artifactId-*-distribution.tar.gz /usr/local/tomcat
 ```
 
 **Step 3:** Add a docker ignore file called ".dockerignore" to the root of the project with the following content
@@ -175,7 +177,7 @@ services:
       - "8585:8080"
     restart: always
   mysql:
-    image: mysql:5.7
+    image: mysql:5.7-debian
     volumes:
       - mysql_data:/var/lib/mysql
       #- ./dump:/docker-entrypoint-initdb.d
