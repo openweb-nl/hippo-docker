@@ -2,6 +2,7 @@
 CATALINA_HOME="/usr/local/tomcat"
 CATALINA_BASE="/usr/local/tomcat"
 CATALINA_PID="${CATALINA_BASE}/work/catalina.pid"
+JAVA_ENDORSED_DIRS=${CATALINA_HOME}/endorsed
 
 if [[ "${CONSISTENCY_CHECK}" == "check" ]]
 then
