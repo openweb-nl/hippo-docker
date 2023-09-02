@@ -2,7 +2,6 @@
 CATALINA_HOME="/usr/local/tomcat"
 CATALINA_BASE="/usr/local/tomcat"
 CATALINA_PID="${CATALINA_BASE}/work/catalina.pid"
-JAVA_ENDORSED_DIRS=${CATALINA_HOME}/endorsed
 
 if [[ "${CONSISTENCY_CHECK}" == "check" ]]
 then
@@ -43,12 +42,12 @@ else
    MEM_OPTS="-XX:MaxRAMPercentage=${MAX_RAM_PERCENTAGE}.0 -XX:MaxMetaspaceSize=${MAX_METASPACE_SIZE}m -XX:MaxDirectMemorySize=${MAX_DIRECT_MEMORY_SIZE}m"
 fi
 
-JVM_OPTS="-server -XshowSettings:vm -XX:-UseContainerSupport -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap ${MEM_OPTS} -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true -Dfile.encoding=${ENCODING} ${RANDOM_OPTS}"
+JVM_OPTS="-server -XshowSettings:vm -XX:-UseContainerSupport -XX:+UnlockExperimentalVMOptions ${MEM_OPTS} -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true -Dfile.encoding=${ENCODING} ${RANDOM_OPTS}"
 REP_OPTS="-Drepo.bootstrap=${REPO_BOOTSTRAP} -Drepo.config=file:${CATALINA_BASE}/conf/${REP_FILE}"
 DMP_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/logs/"
 RMI_OPTS="-Djava.rmi.server.hostname=${RMI_SERVER_HOSTNAME}"
 L4J_OPTS="-Dlog4j.configurationFile=file://${CATALINA_BASE}/conf/log4j2.xml -DLog4jContextSelector=org.apache.logging.log4j.core.selector.BasicContextSelector"
-VGC_OPTS="-verbosegc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:${CATALINA_BASE}/logs/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2048k"
+VGC_OPTS="-Xlog:gc+ergo*:file=${CATALINA_BASE}/logs/gc.log:time:filecount=5,filesize=2048k"
 GEN_OPTS="-DENCODING=${ENCODING} -DMAX_THREADS=${MAX_THREADS} -DACCEPT_COUNT=${ACCEPT_COUNT} -DMAX_CONNECTIONS=${MAX_CONNECTIONS} -DCONNECTION_TIMEOUT=${CONNECTION_TIMEOUT}"
 
 CATALINA_OPTS="${JVM_OPTS} ${VGC_OPTS} ${REP_OPTS} ${DMP_OPTS} ${RMI_OPTS} ${L4J_OPTS} ${JRC_OPTS} ${GEN_OPTS} ${EXTRA_OPTS}"

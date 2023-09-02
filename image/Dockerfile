@@ -66,8 +66,7 @@ COPY ["conf/repository.xml", \
     "$CATALINA_HOME/conf/"]
 
 RUN rm -rf $CATALINA_HOME/webapps/* &&\
-    mkdir -p $CATALINA_HOME/endorsed &&\
-    curl -s -o $CATALINA_HOME/endorsed/mysql-connector-java-$MYSQL_CONNECTOR_VERSION.jar -L https://repo1.maven.org/maven2/mysql/mysql-connector-java/$MYSQL_CONNECTOR_VERSION/mysql-connector-java-$MYSQL_CONNECTOR_VERSION.jar &&\
+    curl -s -o $CATALINA_HOME/lib/mysql-connector-java-$MYSQL_CONNECTOR_VERSION.jar -L https://repo1.maven.org/maven2/mysql/mysql-connector-java/$MYSQL_CONNECTOR_VERSION/mysql-connector-java-$MYSQL_CONNECTOR_VERSION.jar &&\
 	chmod +x $CATALINA_HOME/bin/setenv.sh &&\
 	chmod +x bin/wait-for-it.sh &&\
 	chmod +x bin/entrypoint.sh
