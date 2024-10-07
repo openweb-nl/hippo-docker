@@ -1,6 +1,6 @@
 #docker build --no-cache -f Dockerfile -t openweb/hippo:mysql-15 .
-FROM tomcat:9.0.88-jdk11-temurin-jammy
-MAINTAINER Open Web IT B.V. <info@openweb.nl>
+FROM tomcat:10.1.30-jdk17-temurin-jammy
+LABEL org.opencontainers.image.authors="Open Web IT B.V. <info@openweb.nl>"
 
 ENV ENCODING=UTF-8 \
     CATALINA_HOME=/usr/local/tomcat \
@@ -65,9 +65,10 @@ COPY ["conf/repository.xml", \
         "conf/log4j2.xml", \
     "$CATALINA_HOME/conf/"]
 
-RUN rm -rf $CATALINA_HOME/webapps/* &&\
-    curl -s -o $CATALINA_HOME/lib/mysql-connector-java-$MYSQL_CONNECTOR_VERSION.jar -L https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/$MYSQL_CONNECTOR_VERSION/mysql-connector-j-$MYSQL_CONNECTOR_VERSION.jar &&\
-	chmod +x $CATALINA_HOME/bin/setenv.sh &&\
+ADD https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/$MYSQL_CONNECTOR_VERSION/mysql-connector-j-$MYSQL_CONNECTOR_VERSION.jar $CATALINA_HOME/lib/mysql-connector-java-$MYSQL_CONNECTOR_VERSION.jar
+
+RUN rm -rf "$CATALINA_HOME/webapps/*" &&\
+  chmod +x "$CATALINA_HOME/bin/setenv.sh" &&\
 	chmod +x bin/wait-for-it.sh &&\
 	chmod +x bin/entrypoint.sh
 

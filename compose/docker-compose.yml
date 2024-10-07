@@ -2,7 +2,7 @@ version: '2'
 
 services:
   hippo:
-    image: openweb/hippo:mysql-15
+    image: openweb/hippo:mysql-16
     networks:
       - app_network
     volumes:

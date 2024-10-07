@@ -54,7 +54,10 @@
       <AppenderRef ref="audit"/>
     </Logger>
 
-    <!--  Site logging  -->
+    <!-- index repair logging -->
+    <Logger name="org.hippoecm.repository.jackrabbit.IndexRepairer" level="info"/>
+
+    <!-- Site logging -->
     <Logger name="org.hippoecm.hst" level="warn"/>
 
     <!-- DiagnosticReportingValve only logs when diagnostics enabled in hst:hosts config in repo hence can be here on level 'info' -->
