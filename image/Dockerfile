@@ -1,5 +1,5 @@
 #docker build --no-cache -f Dockerfile -t openweb/hippo:mysql-15 .
-FROM tomcat:10.1.30-jdk17-temurin-jammy
+FROM tomcat:10.1.36-jdk17-temurin-jammy
 LABEL org.opencontainers.image.authors="Open Web IT B.V. <info@openweb.nl>"
 
 ENV ENCODING=UTF-8 \
@@ -42,7 +42,7 @@ ENV ENCODING=UTF-8 \
     DB_USE_SSL="false" \
     DB_ALLOW_PUBLIC_KEY_RETRIEVAL="true" \
 \
-    MYSQL_CONNECTOR_VERSION=8.4.0 \
+    MYSQL_CONNECTOR_VERSION=9.2.0 \
 \
     REPO_BOOTSTRAP=true \
     SET_NODE_ID=true \
